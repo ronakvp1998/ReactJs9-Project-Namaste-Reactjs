@@ -1,0 +1,89 @@
+# ======================================================
+# ✅ Universal React.js .gitignore (for multi-project repo)
+# Works for nested projects (1–5 levels deep)
+# ======================================================
+
+# ----------------------------
+# Node & Build Dependencies
+# ----------------------------
+**/node_modules/
+**/bower_components/
+**/jspm_packages/
+
+# ----------------------------
+# Build and Distribution Folders
+# ----------------------------
+**/build/
+**/dist/
+**/out/
+**/coverage/
+**/.next/
+**/.nuxt/
+**/.parcel-cache/
+**/.vite/
+**/.turbo/
+**/.cache/
+**/.expo/
+**/temp/
+**/tmp/
+
+# ----------------------------
+# Environment Files
+# ----------------------------
+**/.env
+**/.env.*.local
+**/.env.local
+**/.env.development.local
+**/.env.production.local
+**/.env.test.local
+
+# ----------------------------
+# Log Files
+# ----------------------------
+**/npm-debug.log*
+**/yarn-debug.log*
+**/yarn-error.log*
+**/pnpm-debug.log*
+**/lerna-debug.log*
+**/.pnpm-debug.log*
+
+# ----------------------------
+# Testing
+# ----------------------------
+**/coverage/
+**/.nyc_output/
+**/reports/
+**/junit.xml
+
+# ----------------------------
+# IDE / Editor / System Files
+# ----------------------------
+.vscode/
+.idea/
+*.swp
+*.swo
+*.bak
+*.tmp
+.DS_Store
+Thumbs.db
+
+# ----------------------------
+# Package Managers
+# ----------------------------
+# Uncomment these if you don’t want to track lock files
+# **/package-lock.json
+# **/yarn.lock
+# **/pnpm-lock.yaml
+
+# ----------------------------
+# Miscellaneous
+# ----------------------------
+**/.eslintcache
+**/.stylelintcache
+**/.cache-loader/
+**/.serverless/
+**/.firebase/
+**/.vercel/
+**/.netlify/
+**/.DS_Store
+**/.logs/
