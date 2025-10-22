@@ -1,5 +1,11 @@
+import Header from "./Header.js";
+
 const About = () => {
-  return <h1>About Us Page</h1>;
+  return (
+    <div>
+      <h1>About Us Page</h1>
+    </div>
+  );
 };
 
 export default About;

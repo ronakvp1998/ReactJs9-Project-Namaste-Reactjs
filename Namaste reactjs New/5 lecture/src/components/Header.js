@@ -1,5 +1,6 @@
 import { useState } from "react";
-// import { LOGO_URL } from "../utils/constants";
+import { LOGO_URL } from "../utils/constants";
+import { Link } from "react-router-dom"; // ✅ Import Link
 const Header = () => {
   let btnName = "Login";
   const [btnNameNew, setBtnName] = useState(btnName);
@@ -7,18 +8,24 @@ const Header = () => {
     <div className="header">
       <div className="logo-container">
         {/* Always include an alt attribute and self-close the img tag */}
-        <img
-          className="logo"
-          src="https://github.com/ronakvp1998/ReactJs-tutorails-Revision/blob/main/Namaste%20reactjs%20New/5%20lecture/foodlogo.jpg"
-          alt="Food Logo"
-        />
+        <Link to="/">
+          <img className="logo" src={LOGO_URL} alt="Food Logo" />
+        </Link>
       </div>
       <div className="nav-items">
         <ul>
-          <li>Home</li>
-          <li>About Us</li>
-          <li>Contact Us</li>
-          <li>Cart</li>
+          <li>
+            <Link to="/">Home</Link>
+          </li>
+          <li>
+            <Link to="/about">About Us</Link>
+          </li>
+          <li>
+            <Link to="/contact">Contact Us</Link>
+          </li>
+          <li>
+            <Link to="/cart">Cart</Link>
+          </li>
           <button
             className="login"
             onClick={() =>
