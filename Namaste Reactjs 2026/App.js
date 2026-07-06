@@ -1,17 +1,29 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 
-const heading = React.createElement("div",{id:"heading",key: "heading"},[
-        React.createElement("div",{id: "child1",key: "child1"},[
-            React.createElement("h1",{id: "child1.1",key: "child1.1"},"Namaste Reactjs"),
-            React.createElement("h1",{id: "child1.2",key: "child1.2"},"Namaste Reactjs")
-        ]),
-        React.createElement("div",{id: "child2",key: "child2"},[
-            React.createElement("h1",{id: "child2.1",key: "child2.1"},"Namaste Reactjs"),
-            React.createElement("h1",{id: "child2.2",key: "child2.2"},"Namaste Reactjs")
-        ])
-    ])
+const Heading = () => (
+    <h1 className="head" tabIndex="5">
+        Namaste React! Heading
+    </h1>
+)
 
-    const root = ReactDOM.createRoot(document.getElementById("root"))
-    console.log(heading)
-    root.render(heading );
+const elem = (
+    <div>
+        <Heading/>
+        <h1>Namaste React! Element</h1>
+    </div>  
+)
+const num = 1000;
+
+const HeadingComponent = () => (
+    <div>
+        {num + 200}
+        {console.log(num + 200)}
+        {elem}
+        <Heading/>
+        {Heading()}
+        <h1>Namaste React Functional Component</h1>
+    </div>
+)
+const root = ReactDOM.createRoot(document.getElementById("root"));
+root.render(<HeadingComponent/>);
