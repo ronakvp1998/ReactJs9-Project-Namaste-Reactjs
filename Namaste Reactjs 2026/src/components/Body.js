@@ -3,6 +3,9 @@ import { useState, useEffect } from "react";
 import Shimmer from "./Shimmer.js";
 
 const Body = () => {
+
+    // hoops needs to be created inside the component function, otherwise it will give an error "Invalid hook call. Hooks can only be called inside of the body of a function component."
+
     // 1. Keep a copy of the original data so it's never lost
     const [allRestaurants, setAllRestaurants] = useState([]);
     
@@ -12,6 +15,9 @@ const Body = () => {
     // 3. search text
     const [searchText, setSearchText] = useState("");
 
+    // is no dependency array is provided, useEffect will run on every render
+    // if an empty dependency array is provided, useEffect will run only once after the initial render
+    // if a dependency array with variables is provided, useEffect will run only when those variables change
     useEffect(() => {
         console.log("fetching data");
         fetchData();
