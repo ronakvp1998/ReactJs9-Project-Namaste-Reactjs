@@ -60,3 +60,31 @@
     border: 1px solid black;
     cursor: pointer;
 }
+
+.shimmer-container{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.shimmer-card{
+    background-color: #f0f0f0;
+    width: 250px;
+    height: 400px;
+    padding: 20px;
+    margin: 5px;
+}
+
+.login-btn{
+    padding: 5px;
+    margin: 5px;
+    background-color: #f0f0f0;
+    border: 1px solid black;
+    cursor: pointer;
+}
+
+.search-btn{
+    margin: 5px;
+    background-color: #f0f0f0;
+    border: 1px solid black;
+    cursor: pointer;
+}
