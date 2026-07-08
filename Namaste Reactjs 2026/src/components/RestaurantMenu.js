@@ -1,7 +1,8 @@
 import { useEffect } from "react";
 import { useState } from "react";
-import { IMG_URL,restaurantDetailsAPI } from "../utils/constants.js";
+import { IMG_URL, restaurantDetailsAPI } from "../utils/constants.js";
 import { useParams } from "react-router-dom";
+import Error from "./Error.js";
 
 const RestaurantMenu = () => {
   const [restaurant, setRestaurant] = useState(null);
@@ -13,14 +14,21 @@ const RestaurantMenu = () => {
   }, []);
 
   const fetchData = async () => {
-    const data = await fetch(restaurantDetailsAPI.replace("${resId}", resId));
-    const json = await data.json();
-    console.log(json);
-    setRestaurant(json);
+    try {
+      const data = await fetch(restaurantDetailsAPI.replace("${resId}", resId));
+      if(data?.status === 200) {
+        const json = await data.json();
+        setRestaurant(json);
+      }else{
+        <Error/>
+      }
+    } catch (error) {
+      console.error("Failed to fetch restaurants:", error);
+    }
   };
 
   return restaurant === null ? (
-    <h1>Loading...</h1>
+    <Error/>
   ) : (
     <div className="restaurant-menu">
       {console.log("restaurant " + restaurant)}
