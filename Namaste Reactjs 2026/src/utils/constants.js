@@ -3,4 +3,6 @@ const IMG_URL =
 const LOGO_URL =
   "https://www.logodesign.net/logo/smoking-burger-with-lettuce-3624ld.png?nwm=1&nws=1&industry=food&sf=&txt_keyword=All";
 
-export { IMG_URL, LOGO_URL };
+const restaurantDetailsAPI = "http://localhost:8080/api/v1/restaurants/${resId}/details";
+
+export { IMG_URL, LOGO_URL, restaurantDetailsAPI };
