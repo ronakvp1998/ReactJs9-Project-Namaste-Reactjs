@@ -1,8 +1,12 @@
 import RestaurantCard from "./RestaurantCard.js";
 import { useState, useEffect } from "react";
 import Shimmer from "./Shimmer.js";
+import { Link } from "react-router-dom";
 
 const Body = () => {
+
+    // hoops needs to be created inside the component function, otherwise it will give an error "Invalid hook call. Hooks can only be called inside of the body of a function component."
+
     // 1. Keep a copy of the original data so it's never lost
     const [allRestaurants, setAllRestaurants] = useState([]);
     
@@ -12,6 +16,9 @@ const Body = () => {
     // 3. search text
     const [searchText, setSearchText] = useState("");
 
+    // is no dependency array is provided, useEffect will run on every render
+    // if an empty dependency array is provided, useEffect will run only once after the initial render
+    // if a dependency array with variables is provided, useEffect will run only when those variables change
     useEffect(() => {
         console.log("fetching data");
         fetchData();
@@ -88,10 +95,11 @@ const Body = () => {
                 {/* Map over the filtered state, not a local variable */}
                 {filteredRestaurants.map((restaurant) => {
                     return (
-                        <RestaurantCard 
-                            resData={restaurant} 
-                            key={restaurant.id} 
-                        />  
+                        <Link key={restaurant.id} to={`/restaurant/${restaurant.id}`}>
+                            <RestaurantCard 
+                                resData={restaurant} 
+                            />
+                        </Link>
                     );
                 })}
             </div>

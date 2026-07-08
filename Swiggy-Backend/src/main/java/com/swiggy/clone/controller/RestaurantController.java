@@ -27,8 +27,17 @@ public class RestaurantController {
     }
 
     @GetMapping("/{id}")
-    @Operation(summary = "Get a restaurant by ID")
+    @Operation(summary = "Get a restaurant by ID (Basic)")
     public ResponseEntity<Restaurant> getById(@PathVariable Long id) {
+        return service.getRestaurantById(id)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
+    }
+
+    // NEW API Endpoint for full details
+    @GetMapping("/{id}/details")
+    @Operation(summary = "Get full restaurant details (Image, Location, Menu, and Reviewers)")
+    public ResponseEntity<Restaurant> getRestaurantDetails(@PathVariable Long id) {
         return service.getRestaurantById(id)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());

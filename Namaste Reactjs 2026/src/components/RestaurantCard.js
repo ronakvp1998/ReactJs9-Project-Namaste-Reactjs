@@ -1,12 +1,9 @@
 import { IMG_URL } from "../utils/constants.js";
 
-const style = {
-  backgroundColor: "#f0f0f0",
-};
 
 const RestaurantCard = ({ resData }) => {
   return (
-    <div className="res-card" style={style}>
+    <div className="res-card" >
       <h2>{resData?.name}</h2>
       <img
         className="res-logo"
