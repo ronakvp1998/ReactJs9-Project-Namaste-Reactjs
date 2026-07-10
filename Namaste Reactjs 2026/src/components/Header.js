@@ -11,20 +11,21 @@ const Header = () => {
   const onlineStatus = useOnlineStatus();
 
   return (
-    <div className="header">
+    <div className="flex justify-between bg-pink-100 shadow-lg">
+
       <div className="logo-container">
         {/* Always include an alt attribute and self-close the img tag */}
-        <img className="logo" src={LOGO_URL} alt="Food Logo" />
+        <img className=" h-20 w-15" src={LOGO_URL} alt="Food Logo" />
       </div>
-      <div className="nav-items">
-        <ul>
-          <li>Online Status : {onlineStatus ? "Online" : "Offline"}</li>
-          <li><Link to="/">Home</Link></li>
-          <li><Link to="/about">About Us</Link></li>
-          <li><Link to="/contact">Contact Us</Link></li>
-          <li><Link to="/grocery">Grocery</Link></li>
-          <li><Link to="/cart">Cart</Link></li>
-          <button className="login-btn"
+      <div className="flex items-center ">
+        <ul className="flex pr-4 m-4" >
+          <li className="px-4">Online Status : {onlineStatus ? "Online" : "Offline"}</li>
+          <li className="px-4"><Link to="/">Home</Link></li>
+          <li className="px-4"><Link to="/about">About Us</Link></li>
+          <li className="px-4"><Link to="/contact">Contact Us</Link></li>
+          <li className="px-4"><Link to="/grocery">Grocery</Link></li>
+          <li className="px-4"><Link to="/cart">Cart</Link></li>
+          <button className="px-4"
           onClick= {() => {
             console.log("Login button clicked");
             setBtnName(btnName === "Login" ? "Logout" : "Login");
