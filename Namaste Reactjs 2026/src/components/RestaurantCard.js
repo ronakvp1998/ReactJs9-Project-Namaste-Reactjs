@@ -3,19 +3,17 @@ import { IMG_URL } from "../utils/constants.js";
 
 const RestaurantCard = ({ resData }) => {
   return (
-    <div className="res-card" >
-      <h2>{resData?.name}</h2>
+    <div className="m-4 p-4 w-[250px] h-[400px] rounded-lg  bg-gray-50 shadow-lg hover:bg-gray-200" >
+      <h2 className="p-2 font-bold justify-center">{resData?.name}</h2>
       <img
-        className="res-logo"
+        className="rounded-lg w-[250px] h-[250px]"
         src={IMG_URL + resData?.cloudinaryImageId}
         onError={(e) => {
           // If the Swiggy image fails, load a generic food placeholder
-          e.target.src =
-            "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=508&h=320&fit=crop";
-        }}
+          e.target.src = IMG_URL + "qn0mtexltvqs637zjgdx"        }}
       ></img>
-      <h4>{resData?.avgRating}</h4>
-      <h4>{resData?.costForTwo}</h4>
+      <h4 className="p-2"> {resData?.avgRating}</h4>
+      <h4 className="p-2">{resData?.costForTwo}</h4>
     </div>
   );
 };
