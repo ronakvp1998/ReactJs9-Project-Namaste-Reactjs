@@ -5,7 +5,6 @@ import { useParams } from "react-router-dom";
 import Error from "./Error.js";
 import useRestaurantMenu from "../utils/useRestaurantMenu.js";
 
-
 const RestaurantMenu = () => {
   // const [restaurant, setRestaurant] = useState(null);
 
@@ -33,26 +32,31 @@ const RestaurantMenu = () => {
   // };
 
   return restaurant === null ? (
-    <Error/>
+    <Error />
   ) : (
-    <div className="restaurant-menu">
+    <div className="p-4 m-4 flex flex-wrap ">
       {console.log("restaurant " + restaurant)}
-      <h1>{restaurant?.name}</h1>
-      <img
-        src={IMG_URL + restaurant?.cloudinaryImageId}
-        alt={restaurant?.name}
-        onError={(e) => {
-          // If the Swiggy image fails, load a generic food placeholder
-          e.target.src =
-            "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=508&h=320&fit=crop";
-        }}
-      />
-      <h2>Menu</h2>
-      <ul>
-        {restaurant?.menu?.items.map((item) => (
-          <li key={item.id}>{item.name + "  =>  " + item.price + " ₹"} </li>
-        ))}
-      </ul>
+      <div className="p-2 m-2">
+        <h1 className="p-2 m-2 font-bold">{restaurant?.name}</h1>
+        <img
+          className="w-[400px] h-[400px]"
+          src={IMG_URL + restaurant?.cloudinaryImageId}
+          alt={restaurant?.name}
+          onError={(e) => {
+            // If the Swiggy image fails, load a generic food placeholder
+            e.target.src =
+              "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=508&h=320&fit=crop";
+          }}
+        />
+      </div>
+      <div className="p-2 m-2">
+        <h2 className="p-2 m-2 ">Menu</h2>
+        <ul>
+          {restaurant?.menu?.items.map((item) => (
+            <li key={item.id}>{item.name + "  =>  " + item.price + " ₹"} </li>
+          ))}
+        </ul>
+      </div>
     </div>
   );
 };

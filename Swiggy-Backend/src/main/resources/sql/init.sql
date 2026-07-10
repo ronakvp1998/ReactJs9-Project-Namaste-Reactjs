@@ -11,7 +11,8 @@ CREATE TABLE IF NOT EXISTS restaurants (
     locality VARCHAR(255),
     area_name VARCHAR(255),
     cost_for_two VARCHAR(100),
-    avg_rating DOUBLE
+    avg_rating DOUBLE,
+    promoted BOOLEAN DEFAULT false
     );
 
 CREATE TABLE IF NOT EXISTS menus (
@@ -45,9 +46,6 @@ CREATE TABLE IF NOT EXISTS reviews (
 -- 2. INSERT 25 RESTAURANTS
 -- ==========================================
 INSERT INTO restaurants (id, name, cloudinary_image_id, locality, area_name, cost_for_two, avg_rating) VALUES
-                                                                                                           (393840, 'Chinese Wok', 'e0839ff574213e6f35b3899ebf1fc597', 'Chikka Lakshmaiah Layout', 'Adugodi', '₹250 for two', 4.3),
-                                                                                                           (552383, 'Burger King', '67a2e0e0-06db-4cfb-8c14', 'Hiranandani', 'Thane Hiranandani Estate', '₹350 for two', 4.3),
-                                                                                                           (718556, 'Blue Tokai Coffee Roasters', '304acdfd-4f39-43d2-9c01', 'Ghodbunder Road', 'Thane West', '₹600 for two', 4.5),
                                                                                                            (10002, 'Subway', '2996ff9f-5543-4a74-9f80', 'Hypercity, Thane(W)', 'Thane Hiranandani Estate', '₹350 for two', 4.3),
                                                                                                            (131601, 'McDonald''s', '072bae8e-2716-4169-bfee', 'Opp. Municipal Bungalow', 'Thane West', '₹400 for two', 4.4),
                                                                                                            (34793, 'Theobroma', '06d01cc1-a1ca-4ddc-aa28', 'Thane West', 'Thane West', '₹400 for two', 4.5),
@@ -70,6 +68,13 @@ INSERT INTO restaurants (id, name, cloudinary_image_id, locality, area_name, cos
                                                                                                            (1200310, 'Rasobongo', '8f1a8a3a-1d1b-45d5-8195', 'Thane Hiranandani', 'Thane Hiranandani', '₹100 for two', 4.5),
                                                                                                            (299968, 'Bala Dosa Plaza', 'co6lvkimournlhxktdj3', 'Manpada', 'Manpada', '₹200 for two', 4.6),
                                                                                                            (392828, 'Big Bowl', 'deff0d02-ca1d-4ef9-9d62', 'Chikka Lakshmaiah', 'Adugodi', '₹250 for two', 4.3);
+
+
+INSERT INTO restaurants (id, name, cloudinary_image_id, locality, area_name, cost_for_two, avg_rating,promoted) VALUES
+                                                                                                           (393840, 'Chinese Wok', 'e0839ff574213e6f35b3899ebf1fc597', 'Chikka Lakshmaiah Layout', 'Adugodi', '₹250 for two', 4.3,true),
+                                                                                                           (552383, 'Burger King', '67a2e0e0-06db-4cfb-8c14', 'Hiranandani', 'Thane Hiranandani Estate', '₹350 for two', 4.3,true),
+                                                                                                           (718556, 'Blue Tokai Coffee Roasters', '304acdfd-4f39-43d2-9c01', 'Ghodbunder Road', 'Thane West', '₹600 for two', 4.5,true);
+
 
 -- ==========================================
 -- 3. INSERT MENUS (1 for each restaurant)
