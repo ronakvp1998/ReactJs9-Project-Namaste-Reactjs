@@ -1,31 +1,36 @@
-import { useEffect } from "react";
-import { useState } from "react";
+// import { useEffect } from "react";
+// import { useState } from "react";
 import { IMG_URL, restaurantDetailsAPI } from "../utils/constants.js";
 import { useParams } from "react-router-dom";
 import Error from "./Error.js";
+import useRestaurantMenu from "../utils/useRestaurantMenu.js";
+
 
 const RestaurantMenu = () => {
-  const [restaurant, setRestaurant] = useState(null);
+  // const [restaurant, setRestaurant] = useState(null);
 
   const { resId } = useParams();
 
-  useEffect(() => {
-    fetchData();
-  }, []);
+  // custom Hook
+  const restaurant = useRestaurantMenu(resId);
 
-  const fetchData = async () => {
-    try {
-      const data = await fetch(restaurantDetailsAPI.replace("${resId}", resId));
-      if(data?.status === 200) {
-        const json = await data.json();
-        setRestaurant(json);
-      }else{
-        <Error/>
-      }
-    } catch (error) {
-      console.error("Failed to fetch restaurants:", error);
-    }
-  };
+  // useEffect(() => {
+  //   fetchData();
+  // }, []);
+
+  // const fetchData = async () => {
+  //   try {
+  //     const data = await fetch(restaurantDetailsAPI.replace("${resId}", resId));
+  //     if(data?.status === 200) {
+  //       const json = await data.json();
+  //       setRestaurant(json);
+  //     }else{
+  //       <Error/>
+  //     }
+  //   } catch (error) {
+  //     console.error("Failed to fetch restaurants:", error);
+  //   }
+  // };
 
   return restaurant === null ? (
     <Error/>
@@ -33,7 +38,6 @@ const RestaurantMenu = () => {
     <div className="restaurant-menu">
       {console.log("restaurant " + restaurant)}
       <h1>{restaurant?.name}</h1>
-      <h2>Menu</h2>
       <img
         src={IMG_URL + restaurant?.cloudinaryImageId}
         alt={restaurant?.name}
@@ -43,6 +47,7 @@ const RestaurantMenu = () => {
             "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=508&h=320&fit=crop";
         }}
       />
+      <h2>Menu</h2>
       <ul>
         {restaurant?.menu?.items.map((item) => (
           <li key={item.id}>{item.name + "  =>  " + item.price + " ₹"} </li>
