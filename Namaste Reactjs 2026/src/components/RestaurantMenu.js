@@ -1,15 +1,18 @@
 // import { useEffect } from "react";
-import { useState } from "react";
+import { useState,useContext } from "react";
 import { IMG_URL, restaurantDetailsAPI } from "../utils/constants.js";
 import { useParams} from "react-router-dom";
 import Error from "./Error.js";
 import useRestaurantMenu from "../utils/useRestaurantMenu.js";
 import RestaurantCategory from "./RestaurantCategory.js";
+import UserContext from "../utils/UserContext.js";
 
 const RestaurantMenu = () => {
   // const [restaurant, setRestaurant] = useState(null);
 
   const { resId } = useParams();
+
+  const data = useContext(UserContext);
 
   // custom Hook
   const restaurant = useRestaurantMenu(resId);
@@ -62,6 +65,8 @@ const RestaurantMenu = () => {
           {/* {restaurant?.menu?.items.map((item) => (
             <li key={item.id}>{item.name + "  =>  " + item.price + " ₹"} </li>
           ))} */}
+
+          <span>{data.loggedInUser}</span>
       </div>
     </div>
   );
