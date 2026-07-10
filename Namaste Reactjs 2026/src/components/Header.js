@@ -11,7 +11,7 @@ const Header = () => {
   const onlineStatus = useOnlineStatus();
 
   return (
-    <div className="flex justify-between bg-pink-100 shadow-lg">
+    <div className="flex justify-between bg-orange-500 shadow-lg">
 
       <div className="logo-container">
         {/* Always include an alt attribute and self-close the img tag */}

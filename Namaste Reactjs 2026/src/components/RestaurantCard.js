@@ -24,10 +24,10 @@ const RestaurantCard = ({ resData }) => {
 // input - RestaurantCard => RestaurantCardPromoted
 
 export const withPromotedLabel = (RestaurantCard) => {
-  return (resData) => {
+  return ({resData}) => {
     return(
       <div>
-        <label className="absolute bg-black text-white m-1 p-1 rounded-lg">Promoted</label>
+        <label className="absolute bg-black text-white m-1 px-1 rounded-lg">Promoted</label>
         <RestaurantCard resData={resData}/>
       </div>
     )

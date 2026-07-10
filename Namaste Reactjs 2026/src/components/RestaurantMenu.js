@@ -1,9 +1,10 @@
 // import { useEffect } from "react";
-// import { useState } from "react";
+import { useState } from "react";
 import { IMG_URL, restaurantDetailsAPI } from "../utils/constants.js";
-import { useParams } from "react-router-dom";
+import { useParams} from "react-router-dom";
 import Error from "./Error.js";
 import useRestaurantMenu from "../utils/useRestaurantMenu.js";
+import RestaurantCategory from "./RestaurantCategory.js";
 
 const RestaurantMenu = () => {
   // const [restaurant, setRestaurant] = useState(null);
@@ -31,15 +32,17 @@ const RestaurantMenu = () => {
   //   }
   // };
 
+  const resMenuCategory = ["Recommended","Newly Added","Most Popular","Top Rated"];
+  const [showIndex, setShowIndex] = useState(null);
   return restaurant === null ? (
     <Error />
   ) : (
-    <div className="p-4 m-4 flex flex-wrap ">
+    <div className="p-4 m-4 flex flex-wrap justify-center">
       {console.log("restaurant " + restaurant)}
       <div className="p-2 m-2">
-        <h1 className="p-2 m-2 font-bold">{restaurant?.name}</h1>
+        <h1 className="p-2 m-2 font-bold text-2xl">{restaurant?.name}</h1>
         <img
-          className="w-[400px] h-[400px]"
+          className="w-[400px] h-[400px] rounded-lg"
           src={IMG_URL + restaurant?.cloudinaryImageId}
           alt={restaurant?.name}
           onError={(e) => {
@@ -48,14 +51,17 @@ const RestaurantMenu = () => {
               "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=508&h=320&fit=crop";
           }}
         />
-      </div>
-      <div className="p-2 m-2">
-        <h2 className="p-2 m-2 ">Menu</h2>
-        <ul>
-          {restaurant?.menu?.items.map((item) => (
+        <h2 className="p-2 m-2 font-bold text-xl">Menu</h2>
+          {resMenuCategory.map((category,index) => {
+            // controlled component
+            return (
+            <RestaurantCategory category={category} 
+            items={restaurant?.menu?.items} key={index} showItems={index === showIndex ? true : false} setShowIndex={() => setShowIndex(index)}/>
+          );
+          })}
+          {/* {restaurant?.menu?.items.map((item) => (
             <li key={item.id}>{item.name + "  =>  " + item.price + " ₹"} </li>
-          ))}
-        </ul>
+          ))} */}
       </div>
     </div>
   );

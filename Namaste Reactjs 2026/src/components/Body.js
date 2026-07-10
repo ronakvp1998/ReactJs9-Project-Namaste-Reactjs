@@ -106,7 +106,6 @@ const Body = () => {
         {filteredRestaurants.map((restaurant) => {
           return (
             <Link key={restaurant.id} to={`/restaurant/${restaurant.id}`}>
-                {console.log(restaurant)}
                 {restaurant.promoted ? (
                   <RestaurantCardPromoted resData={restaurant} />
                 ) : (
