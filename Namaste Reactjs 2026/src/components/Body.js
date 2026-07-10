@@ -1,8 +1,10 @@
-import RestaurantCard from "./RestaurantCard.js";
+import RestaurantCard, { withPromotedLabel } from "./RestaurantCard.js";
 import { useState, useEffect } from "react";
 import Shimmer from "./Shimmer.js";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus.js";
+import UserContext from "../utils/UserContext.js";
+import { useContext } from "react";
 
 const Body = () => {
   // hoops needs to be created inside the component function, otherwise it will give an error "Invalid hook call. Hooks can only be called inside of the body of a function component."
@@ -24,6 +26,11 @@ const Body = () => {
     fetchData();
   }, []);
 
+  const {loggedInUser,setNameInfo} = useContext(UserContext);
+
+  const [userName, setUserName] = useState("");
+
+
   const fetchData = async () => {
     try {
       const data = await fetch("http://localhost:8080/api/v1/restaurants");
@@ -43,6 +50,8 @@ const Body = () => {
   if (!onlineStatus) {
     return <h1>You are offline. Please check your internet connection.</h1>;
   }
+
+  const RestaurantCardPromoted = withPromotedLabel(RestaurantCard);
 
   return filteredRestaurants.length === 0 ? (
     <Shimmer />
@@ -74,29 +83,34 @@ const Body = () => {
             All Restaurant
           </button>
         </div>
+        <div>
+            <label>User Name: </label>
+            <input className="border-4" type="text" value={loggedInUser} onChange={(e) => setNameInfo(e.target.value)} />
         </div>
-        <div className= "flex justify-center px-4">
-          <input className="border-4"
-            type="text"
-            placeholder="Search for restaurants"
-            value={searchText}
-            onChange={(e) => {
-              setSearchText(e.target.value.toLowerCase());
-            }}
-          />
-          <button
-            className="px-4 py-2 bg-green-100 rounded-lg ml-4"
-            onClick={(e) => {
-              const filtered = allRestaurants.filter((restaurant) => {
-                return restaurant.name.toLowerCase().includes(searchText);
-              });
-              setFilteredRestaurants(
-                filtered.length > 0 ? filtered : allRestaurants,
-              );
-            }}
-          >
-            Search
-          </button>
+      </div>
+      <div className="flex justify-center px-4">
+        <input
+          className="border-4 w-[1000px]"
+          type="text"
+          placeholder=" Search for restaurants"
+          value={searchText}
+          onChange={(e) => {
+            setSearchText(e.target.value.toLowerCase());
+          }}
+        />
+        <button
+          className="px-4 py-2 bg-green-100 rounded-lg ml-4"
+          onClick={(e) => {
+            const filtered = allRestaurants.filter((restaurant) => {
+              return restaurant.name.toLowerCase().includes(searchText);
+            });
+            setFilteredRestaurants(
+              filtered.length > 0 ? filtered : allRestaurants,
+            );
+          }}
+        >
+          Search
+        </button>
       </div>
 
       <div className="flex flex-wrap justify-center p-4 ">
@@ -104,7 +118,11 @@ const Body = () => {
         {filteredRestaurants.map((restaurant) => {
           return (
             <Link key={restaurant.id} to={`/restaurant/${restaurant.id}`}>
-              <RestaurantCard resData={restaurant} />
+              {restaurant.promoted ? (
+                <RestaurantCardPromoted resData={restaurant} />
+              ) : (
+                <RestaurantCard resData={restaurant} />
+              )}
             </Link>
           );
         })}

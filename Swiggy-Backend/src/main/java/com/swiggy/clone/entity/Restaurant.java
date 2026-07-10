@@ -16,6 +16,7 @@ public class Restaurant {
     private String areaName;
     private String costForTwo;
     private Double avgRating;
+    private Boolean promoted;
 
     @OneToOne(mappedBy = "restaurant", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JsonManagedReference("restaurant-menu")
@@ -25,6 +26,14 @@ public class Restaurant {
     @OneToMany(mappedBy = "restaurant", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JsonManagedReference("restaurant-reviews")
     private List<Review> reviews;
+
+    public Boolean getPromoted() {
+        return promoted;
+    }
+
+    public void setPromoted(Boolean promoted) {
+        this.promoted = promoted;
+    }
 
     // Getters and Setters
     public Long getId() { return id; }

@@ -1,7 +1,9 @@
 import { LOGO_URL } from "../utils/constants";
-import { useState } from "react";
+import { useState ,useContext} from "react";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
+import UserContext from "../utils/UserContext";
+
 const Header = () => {
 
   // let btnName = "Login";
@@ -10,12 +12,14 @@ const Header = () => {
 
   const onlineStatus = useOnlineStatus();
 
+  const data = useContext(UserContext);
+
   return (
-    <div className="flex justify-between bg-pink-100 shadow-lg">
+    <div className="flex justify-between bg-orange-500 shadow-lg">
 
       <div className="logo-container">
         {/* Always include an alt attribute and self-close the img tag */}
-        <img className=" h-20 w-15" src={LOGO_URL} alt="Food Logo" />
+        <img className="p-2 h-20 w-15 rounded-xl" src={LOGO_URL} alt="Food Logo" />
       </div>
       <div className="flex items-center ">
         <ul className="flex pr-4 m-4" >
@@ -30,6 +34,7 @@ const Header = () => {
             console.log("Login button clicked");
             setBtnName(btnName === "Login" ? "Logout" : "Login");
           }}>{btnName}</button>
+          <li className="px-4 font-bold">{data.loggedInUser}</li>
         </ul>
       </div>
     </div>
