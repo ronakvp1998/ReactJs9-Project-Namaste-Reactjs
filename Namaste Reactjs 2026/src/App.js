@@ -4,14 +4,15 @@ import { data } from "./utils/data.js";
 import Header from "./components/Header.js";
 import Body from "./components/Body.js";
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
-// import About from "./components/About.js";
 import Contact from "./components/Contact.js";
 import Cart from "./components/Cart.js";
 import Error from "./components/Error.js";
 import RestaurantMenu from "./components/RestaurantMenu.js";
 import UserContext from "./utils/UserContext.js";
-// import Grocery from "./components/Grocery.js";
 import { lazy, Suspense } from "react";
+import { Provider } from "react-redux";
+import appStore from "./utils/appStore.js";
+
 
 const Grocery = lazy(() => import("./components/Grocery.js"));
 const About = lazy(() => {
@@ -30,14 +31,14 @@ const AppLayout = () => {
   }, []);
 
   return (
-    <UserContext.Provider value={{ loggedInUser: userName,setNameInfo }}>
-      <div className="app">
-        {/* <UserContext.Provider value={{ loggedInUser: "Elon Musk",setNameInfo }}> */}
+    <Provider store={appStore}>
+      <UserContext.Provider value={{ loggedInUser: userName, setNameInfo }}>
+        <div className="app">
           <Header />
-        {/* </UserContext.Provider> */}
-        <Outlet />
-      </div>
-    </UserContext.Provider>
+          <Outlet />
+        </div>
+      </UserContext.Provider>
+    </Provider>
   );
 };
 
